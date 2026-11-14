@@ -117,6 +117,66 @@ and reduced single-request inter-token latency from 20.4 to 18.5 ms
 That measurement used a patched vLLM build; it does not establish the same gain for other
 models, GPU types, graph modes, or the repository's current wheel pin.
 
+## Hero throughput settings and prerequisites
+
+The Hero BF16 results in [issue #11430](https://github.com/marin-community/marin/issues/11430)
+used 16 GB200 GPUs with TP1/DP16/EP16. The current model catalog cannot launch that topology:
+it supports multi-host pipeline parallelism, while these measurements used data parallelism
+across four hosts. A Hero catalog preset needs that launcher support and a qualified wheel.
+
+The availability tiers are:
+
+- **Main wheel:** `01911be34fac`, the current repository pin.
+- **#11241 wheel:** `0ac9dcb157ee`, the measured baseline, pending adoption in
+  [#11241](https://github.com/marin-community/marin/pull/11241).
+- **Unreleased fork changes:** the ShortConv full-graph guard and tuned MoE configuration.
+  The guard was measured as a Python overlay on the #11241 wheel; R14 loaded the tuned file
+  from `VLLM_TUNED_CONFIG_FOLDER`.
+
+Adopt the fork changes through the normal
+[vLLM release and qualification workflow](../../../../.agents/skills/refresh-fork/docs/vllm.md)
+before enabling them in a production preset. A Hero preset is a follow-up after #11241, with
+cross-host data-parallel launcher support still required. RL weight publication with full
+graphs remains untested and is outside these recommendations.
+
+| Setting | Availability | Measured recommendation and limit |
+| --- | --- | --- |
+| `max_num_seqs` | Typed setting on main; Hero results need the #11241 wheel and a cross-host DP launcher. | 128 per engine for short prompts and 1K outputs. 32→64 raised throughput 95–99% at 1,024 requests in flight (R2); 64→128 added 86% at 2,048 (R9). |
+| Compilation | The launcher can pass `--compilation-config`; Hero graphs need the #11241 wheel (PIECEWISE) and the unreleased guard (full decode graphs). | `FULL_AND_PIECEWISE` added 43% at 1,024 in flight (R12). On main and the #11241 wheel, that mode resolves to NONE for Hero. |
+| API workers | `--api-server-count` is a vLLM flag; main has no Hero cross-host DP leader configuration. | Four API servers, set on the leader host, added 13% at 2,048 in flight with full graphs and were neutral at 1,024 (R13). With PIECEWISE they lowered TTFT but not throughput (R4b). |
+| NCCL symmetric memory | The typed `vllm_use_nccl_symm_mem` setting is documented above; the main wheel supports its environment variable. | Enabling it added 6% at 1,024 in flight with full graphs (R15). That gain used the #11241 wheel plus the unreleased guard; activation limits still apply. |
+| Expert GEMMs | Unreleased tuned GB200 `E=24,N=3072` file; R14 loaded it through `VLLM_TUNED_CONFIG_FOLDER`. A preset needs a fork release that ships it. | Added 7% at 1,024 in flight with full graphs (R14); specific to 24 local experts. |
+
+R identifiers refer to the results in issue #11430. Requests in flight are total across all 16
+engines. The table describes individual comparisons; their percentage gains are not additive.
+
+ShortConv requires these three `compilation_config.splitting_ops`: `vllm::unified_attention_with_output`,
+`vllm::unified_kv_cache_update`, and `vllm::grug_moe_short_conv`. An explicit list replaces the
+vLLM defaults. On the main wheel, ShortConv models run without CUDA graphs in every mode.
+On the #11241 wheel, use `PIECEWISE` with all three ops; selecting `FULL_AND_PIECEWISE` or
+omitting the ShortConv split disables CUDA graphs with a log warning. Confirm the resolved
+`cudagraph_mode` in the engine log. With the unreleased guard change,
+prefill and mixed batches stay piecewise while uniform decode replays as one graph.
+
+The `max_num_seqs` and `gpu_memory_utilization` settings below already exist on main. Their
+Hero results require the #11241 wheel and a cross-host DP launcher.
+
+For 4K outputs with PIECEWISE and one API server (R11), 96 sequences per engine avoided
+KV-cache waiting at about 1,540 output tokens/s/GPU. Allowing 128 raised throughput while
+filling the cache; increasing `gpu_memory_utilization` from 0.90 to 0.95 then added 3.6% at
+2,048 requests in flight (one pair), at the cost of memory headroom and queueing. Keep 0.90
+unless the workload warrants that tradeoff.
+
+For 1K outputs with at least 3,072 requests in flight, 192 sequences added 13.5% over 128
+(R17, one pair), but inter-token latency rose from 51 to 66 ms and there was no gain at 2,048.
+That comparison used the full stack: the unreleased full-graph guard and tuned MoE file,
+NCCL symmetric memory, and four API servers.
+
+These are workload-specific measurements, not global serving defaults. Prompt scoring passed
+within-instance invariance and JAX probability-error gates; the full-graph stack also passed
+decode/prefill consistency. Decode still depends on co-batching, so these results do not imply
+bitwise-identical rollouts or trainer-consistent logprobs.
+
 ## Multi-node GPU serving
 
 Set `serve.instances` to start independent model servers behind Marin's inference broker. Each
