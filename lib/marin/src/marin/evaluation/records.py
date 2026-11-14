@@ -191,6 +191,7 @@ class ModelServeConfig(BaseModel):
     reasoning_parser: str | None
     vllm_batch_invariant: bool | None = None
     vllm_use_flashinfer_sampler: bool | None = None
+    vllm_use_nccl_symm_mem: bool | None = None
     runai_streamer_concurrency: int | None = None
     runai_streamer_s3_request_timeout_ms: int | None = None
     hf_hub_disable_xet: bool = False

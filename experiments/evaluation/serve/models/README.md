@@ -48,6 +48,7 @@ serve:                          # ServeConfig -> model-server behavior
   reasoning_parser: qwen3
   vllm_batch_invariant: null    # VLLM_BATCH_INVARIANT; true/false is preserved
   vllm_use_flashinfer_sampler: null # VLLM_USE_FLASHINFER_SAMPLER; false uses the built-in sampler
+  vllm_use_nccl_symm_mem: null  # VLLM_USE_NCCL_SYMM_MEM; all-reduce, all-gather and reduce-scatter
   vllm_source: null             # GPU default is marin_fork; upstream requires vllm_version
   vllm_version: null            # exact upstream PyPI version, e.g. "0.29.0"
   vllm_plugin_requirements: []  # pinned packages installed with GPU vLLM in its isolated environment
@@ -97,6 +98,24 @@ The launch guard rejects `--enforce-eager` without the acknowledgement flag
 `--i-know-i-am-making-vllm-slow`. Treat that error as a reason to investigate the configuration;
 do not satisfy it automatically. Marin removes the acknowledgement flag before launching vLLM
 and rejects `--config` files and abbreviated eager flags.
+
+## NCCL symmetric memory
+
+Set `serve.vllm_use_nccl_symm_mem: true` to pass `VLLM_USE_NCCL_SYMM_MEM=1` to GPU
+vLLM workers. `false` explicitly disables it; an unset field leaves the worker environment
+unchanged. The setting is retained in the recorded model configuration and requires the vLLM
+backend on GPU. The recorded value is the request, not confirmation that vLLM used the backend.
+On the current wheel, `VLLM_BATCH_INVARIANT=1` disables the symmetric-memory collective paths,
+including when requested through `serve.vllm_batch_invariant: true`. If the worker logs
+`Failed to compile NCCL memory allocator. Symmetric memory will be disabled.`, vLLM continues
+without symmetric memory.
+
+For Hero BF16 on 16 GB200 GPUs (TP1/DP16/EP16), enabling this setting on top of full decode
+graphs raised output throughput from 1,321 to 1,399 tokens/s/GPU at 1,024 requests in flight
+and reduced single-request inter-token latency from 20.4 to 18.5 ms
+([issue #11430, R15](https://github.com/marin-community/marin/issues/11430#issuecomment-6876476443)).
+That measurement used a patched vLLM build; it does not establish the same gain for other
+models, GPU types, graph modes, or the repository's current wheel pin.
 
 ## Multi-node GPU serving
 
