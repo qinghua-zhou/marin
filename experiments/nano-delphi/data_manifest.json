@@ -1,0 +1,128 @@
+{
+ "train_tokens": 5600000000.0,
+ "margin": 1.3,
+ "seed": 0,
+ "weights": {
+  "nemotron_cc/hq_actual": 0.91351,
+  "nemotron_cc/hq_synth": 2.72,
+  "nemotron_cc/medium_high": 0.82471,
+  "nemotron_cc/medium": 3.38,
+  "nemotron_cc/medium_low": 1.54,
+  "nemotron_cc/low_actual": 0.70123,
+  "nemotron_cc/low_synth": 0.62771,
+  "starcoderdata": 0.25,
+  "proofpile_2": 0.055
+ },
+ "tokens_needed": {
+  "nemotron_cc/hq_actual": 603909932.2930287,
+  "nemotron_cc/hq_synth": 1798157672.972423,
+  "nemotron_cc/medium_high": 545205372.9695172,
+  "nemotron_cc/medium": 2234475343.6201434,
+  "nemotron_cc/medium_low": 1018074564.8446807,
+  "nemotron_cc/low_actual": 463574303.3156074,
+  "nemotron_cc/low_synth": 414971159.15497047,
+  "starcoderdata": 165271844.9423183,
+  "proofpile_2": 36359805.88731002
+ },
+ "nemotron": {
+  "hq_actual": {
+   "available": 2755,
+   "est_tokens_needed": 603909932.2930287,
+   "paths": [
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=high/kind=actual/kind2=actual/CC-MAIN-2019-13-part-00010.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=high/kind=actual/kind2=actual/CC-MAIN-2017-39-part-00017.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=high/kind=actual/kind2=actual/CC-MAIN-2013-20-part-00019.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=high/kind=actual/kind2=actual/CC-MAIN-2024-18-part-00047.jsonl.zstd"
+   ]
+  },
+  "hq_synth": {
+   "available": 8353,
+   "est_tokens_needed": 1798157672.972423,
+   "paths": [
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=high/kind=synthetic/kind2=extract_knowledge/CC-MAIN-2015-32-part-00002.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=high/kind=synthetic/kind2=wrap_medium/CC-MAIN-2024-10-part-00070.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=high/kind=synthetic/kind2=wrap_medium/CC-MAIN-2023-40-part-00011.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=high/kind=synthetic/kind2=diverse_qa_pairs/CC-MAIN-2018-05-part-00011.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=high/kind=synthetic/kind2=knowledge_list/CC-MAIN-2020-16-part-00007.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=high/kind=synthetic/kind2=wrap_medium/CC-MAIN-2024-10-part-00064.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=high/kind=synthetic/kind2=extract_knowledge/CC-MAIN-2024-22-part-00059.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=high/kind=synthetic/kind2=extract_knowledge/CC-MAIN-2016-07-part-00002.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=high/kind=synthetic/kind2=extract_knowledge/CC-MAIN-2019-51-part-00000.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=high/kind=synthetic/kind2=diverse_qa_pairs/CC-MAIN-2021-17-part-00000.jsonl.zstd"
+   ]
+  },
+  "medium_high": {
+   "available": 2454,
+   "est_tokens_needed": 545205372.9695172,
+   "paths": [
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=medium-high/kind=actual/kind2=actual/CC-MAIN-2019-47-part-00008.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=medium-high/kind=actual/kind2=actual/CC-MAIN-2021-17-part-00003.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=medium-high/kind=actual/kind2=actual/CC-MAIN-2021-17-part-00005.jsonl.zstd"
+   ]
+  },
+  "medium": {
+   "available": 9678,
+   "est_tokens_needed": 2234475343.6201434,
+   "paths": [
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=medium/kind=actual/kind2=actual/CC-MAIN-2014-42-part-00026.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=medium/kind=actual/kind2=actual/CC-MAIN-2015-48-part-00000.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=medium/kind=actual/kind2=actual/CC-MAIN-2018-51-part-00096.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=medium/kind=actual/kind2=actual/CC-MAIN-2020-24-part-00003.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=medium/kind=actual/kind2=actual/CC-MAIN-2024-22-part-00074.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=medium/kind=actual/kind2=actual/CC-MAIN-2014-23-part-00058.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=medium/kind=actual/kind2=actual/CC-MAIN-2022-33-part-00026.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=medium/kind=actual/kind2=actual/CC-MAIN-2019-35-part-00026.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=medium/kind=actual/kind2=actual/CC-MAIN-2018-51-part-00063.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=medium/kind=actual/kind2=actual/CC-MAIN-2022-49-part-00039.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=medium/kind=actual/kind2=actual/CC-MAIN-2023-23-part-00063.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=medium/kind=actual/kind2=actual/CC-MAIN-2016-50-part-00037.jsonl.zstd"
+   ]
+  },
+  "medium_low": {
+   "available": 4287,
+   "est_tokens_needed": 1018074564.8446807,
+   "paths": [
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=medium-low/kind=actual/kind2=actual/CC-MAIN-2023-50-part-00011.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=medium-low/kind=actual/kind2=actual/CC-MAIN-2018-22-part-00038.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=medium-low/kind=actual/kind2=actual/CC-MAIN-2021-25-part-00055.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=medium-low/kind=actual/kind2=actual/CC-MAIN-2019-13-part-00010.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=medium-low/kind=actual/kind2=actual/CC-MAIN-2019-43-part-00007.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=medium-low/kind=actual/kind2=actual/CC-MAIN-2017-04-part-00015.jsonl.zstd"
+   ]
+  },
+  "low_actual": {
+   "available": 1964,
+   "est_tokens_needed": 463574303.3156074,
+   "paths": [
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=low/kind=actual/kind2=actual/CC-MAIN-2021-25-part-00005.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=low/kind=actual/kind2=actual/CC-MAIN-2021-49-part-00024.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=low/kind=actual/kind2=actual/CC-MAIN-2017-47-part-00005.jsonl.zstd"
+   ]
+  },
+  "low_synth": {
+   "available": 1788,
+   "est_tokens_needed": 414971159.15497047,
+   "paths": [
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=low/kind=synthetic/kind2=wrap_medium/CC-MAIN-2019-18-part-00001.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=low/kind=synthetic/kind2=wrap_medium/CC-MAIN-2023-14-part-00005.jsonl.zstd",
+    "contrib/Nemotron/Nemotron-CC/data-jsonl/quality=low/kind=synthetic/kind2=wrap_medium/CC-MAIN-2020-40-part-00022.jsonl.zstd"
+   ]
+  }
+ },
+ "proofpile_2": {
+  "revision": "901a9273a770e9d4138c5ddd91802f9c5c6cdc4b",
+  "paths": [
+   "arxiv/train/arXiv_022.jsonl.zst",
+   "open-web-math/train/shard-0003.jsonl.zst",
+   "algebraic-stack/train/julia0003.jsonl.zst"
+  ]
+ },
+ "starcoderdata": {
+  "est_tokens_needed": 165271844.9423183,
+  "num_files": 12,
+  "row_fraction": 0.25
+ },
+ "paloma": {
+  "revision": "65cd6fc59dba021b21db414fa5e8d7765ffbe5e6"
+ }
+}

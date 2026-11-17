@@ -1,0 +1,2 @@
+# Machine-specific copies of the committed *.template.sh launchers (absolute paths, hosts, GPU ids).
+*.local.sh

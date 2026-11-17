@@ -1,0 +1,314 @@
+{
+  "source": "https://huggingface.co/datasets/marin-community/delphi-blog-data/resolve/main/delphi-ladder/train.parquet",
+  "metric": "Paloma macro loss (nats/token), final annealed checkpoint",
+  "fit_chinchilla_total": {
+    "A": 326766.1010397985,
+    "B": 5786.62760564188,
+    "E": 2.5832390982660827,
+    "alpha": 0.6853033738889724,
+    "beta": 0.431310325517256
+  },
+  "fit_chinchilla_nonembed": {
+    "A": 233.1649658505068,
+    "B": 3635.283943762988,
+    "E": 2.4703397471128614,
+    "alpha": 0.32658341631476207,
+    "beta": 0.4078892274651763
+  },
+  "fit_local_width": {
+    "512": {
+      "E": 3.4453385283688194,
+      "B": 3805.4913904975106
+    },
+    "640": {
+      "E": 3.3093175704311526,
+      "B": 4033.8513954510227
+    },
+    "768": {
+      "E": 3.1801130709892327,
+      "B": 4624.7709896268
+    },
+    "896": {
+      "E": 3.096450011108738,
+      "B": 4550.692498259546
+    },
+    "1024": {
+      "E": 2.9986100389960813,
+      "B": 5039.118757896496
+    },
+    "1152": {
+      "E": 2.9818902577928106,
+      "B": 4851.451218962297
+    },
+    "1280": {
+      "E": 2.8674280055381316,
+      "B": 5944.234385885791
+    },
+    "1408": {
+      "E": 2.8796939224190554,
+      "B": 5231.502410864636
+    },
+    "1536": {
+      "E": 2.7903542404163635,
+      "B": 5942.0138940774805
+    },
+    "1664": {
+      "E": 2.8693773488956147,
+      "B": 4870.294697247253
+    },
+    "1792": {
+      "E": 2.7335226540645885,
+      "B": 6189.524309780979
+    },
+    "2048": {
+      "E": 2.695752304816078,
+      "B": 6135.1680959747855
+    },
+    "2304": {
+      "E": 2.6833714711754837,
+      "B": 5951.83714023149
+    },
+    "2560": {
+      "E": 2.6454239605395,
+      "B": 6192.475567028726
+    },
+    "2816": {
+      "E": 2.6486971612916346,
+      "B": 5953.781387385173
+    },
+    "3072": {
+      "E": 2.597669960282443,
+      "B": 6632.59426299052
+    },
+    "3328": {
+      "E": 2.6022039861945827,
+      "B": 6310.3700543168825
+    },
+    "3584": {
+      "E": 2.618349487606673,
+      "B": 6041.304294460332
+    },
+    "3840": {
+      "E": 2.6247483838093046,
+      "B": 5878.503531289871
+    },
+    "4096": {
+      "E": 2.624780956006227,
+      "B": 5812.095305738551
+    }
+  },
+  "rmse_isoflop": {
+    "chinchilla_total": 0.02109505040817942,
+    "chinchilla_nonembed": 0.022619977647216266
+  },
+  "held_out_check": [
+    {
+      "run": "adamh-scaling-ladder-nemotron-optimal-1e+22-v5-025b0e",
+      "loss": 2.530787467956543,
+      "chinchilla_total": 2.715016937214842
+    },
+    {
+      "run": "adamh-scaling-ladder-nemotron-optimal-1e+21-v5-019021",
+      "loss": 2.758140563964844,
+      "chinchilla_total": 2.824923024221628
+    },
+    {
+      "run": "adamh-scaling-ladder-nemotron-optimal-1e+23-v5-27f2fb",
+      "loss": 2.3546013832092285,
+      "chinchilla_total": 2.654909697575678
+    },
+    {
+      "run": "adamh-scaling-ladder-nemotron-optimal-1e+21-v5-seed42-e251d0",
+      "loss": 2.760561943054199,
+      "chinchilla_total": 2.824923024221628
+    },
+    {
+      "run": "adamh-scaling-ladder-nemotron-optimal-1e+21-v5-seed62746-659a1b",
+      "loss": 2.759509563446045,
+      "chinchilla_total": 2.824923024221628
+    },
+    {
+      "run": "adamh-scaling-ladder-nemotron-optimal-1e+22-v5-seed42-deeff4",
+      "loss": 2.534245729446411,
+      "chinchilla_total": 2.715016937214842
+    },
+    {
+      "run": "adamh-scaling-ladder-nemotron-optimal-1e+22-v5-seed62746-10f597",
+      "loss": 2.531137466430664,
+      "chinchilla_total": 2.715016937214842
+    }
+  ],
+  "observed_d512": [
+    {
+      "run_name": "isoflop-9e+18-d512-L6-B64-adamh_scaling_v6",
+      "tokens": 12914786304.0,
+      "loss": 3.612959861755371
+    },
+    {
+      "run_name": "isoflop-3e+18-d512-L6-B32-adamh_scaling_v6",
+      "tokens": 4304928768.0,
+      "loss": 3.710956335067749
+    },
+    {
+      "run_name": "isoflop-2e+19-d512-L6-B128-adamh_scaling_v6",
+      "tokens": 25829572608.0,
+      "loss": 3.5669121742248535
+    }
+  ],
+  "predictions": {
+    "delphi-3e18-d512 (original smallest)": {
+      "hidden": 512,
+      "layers": 6,
+      "params_total": 156508160,
+      "params_non_embed": 25174016,
+      "tokens": 4304928768,
+      "flops": 2996408956533866496,
+      "chinchilla_total": 3.7795750922758944,
+      "chinchilla_nonembed": 3.790405763239181,
+      "local_width": 3.71152240474338
+    },
+    "delphi-9e18-d512": {
+      "hidden": 512,
+      "layers": 6,
+      "params_total": 156508160,
+      "params_non_embed": 25174016,
+      "tokens": 12914786304,
+      "flops": 8989226869601599488,
+      "chinchilla_total": 3.6268211037020945,
+      "chinchilla_nonembed": 3.6360028833467375,
+      "local_width": 3.6110659682837425
+    },
+    "nano-1e+17-d128": {
+      "hidden": 128,
+      "layers": 2,
+      "params_total": 33358976,
+      "params_non_embed": 525440,
+      "tokens": 875379564.5792016,
+      "flops": 1e+17,
+      "chinchilla_total": 5.6710617107539525,
+      "chinchilla_nonembed": 6.447185642483519,
+      "local_width": null
+    },
+    "nano-1e+17-d256": {
+      "hidden": 256,
+      "layers": 3,
+      "params_total": 68815360,
+      "params_non_embed": 3148288,
+      "tokens": 394260077.91840774,
+      "flops": 1e+17,
+      "chinchilla_total": 5.108282176826112,
+      "chinchilla_nonembed": 5.363761047823681,
+      "local_width": null
+    },
+    "nano-1e+17-d384": {
+      "hidden": 384,
+      "layers": 4,
+      "params_total": 107942272,
+      "params_non_embed": 9441664,
+      "tokens": 233836474.59899852,
+      "flops": 1e+17,
+      "chinchilla_total": 5.026091576014906,
+      "chinchilla_nonembed": 5.102488135791307,
+      "local_width": null
+    },
+    "nano-1e+17-d512": {
+      "hidden": 512,
+      "layers": 6,
+      "params_total": 156508160,
+      "params_non_embed": 25174016,
+      "tokens": 143669600.19301838,
+      "flops": 1e+17,
+      "chinchilla_total": 5.128978607726451,
+      "chinchilla_nonembed": 5.073843710952278,
+      "local_width": 4.598937979118251
+    },
+    "nano-3e+17-d128": {
+      "hidden": 128,
+      "layers": 2,
+      "params_total": 33358976,
+      "params_non_embed": 525440,
+      "tokens": 2626138693.7376046,
+      "flops": 3e+17,
+      "chinchilla_total": 5.367421058565324,
+      "chinchilla_nonembed": 6.15150645900751,
+      "local_width": null
+    },
+    "nano-3e+17-d256": {
+      "hidden": 256,
+      "layers": 3,
+      "params_total": 68815360,
+      "params_non_embed": 3148288,
+      "tokens": 1182780233.7552233,
+      "flops": 3e+17,
+      "chinchilla_total": 4.679958898003576,
+      "chinchilla_nonembed": 4.954388113287614,
+      "local_width": null
+    },
+    "nano-3e+17-d384": {
+      "hidden": 384,
+      "layers": 4,
+      "params_total": 107942272,
+      "params_non_embed": 9441664,
+      "tokens": 701509423.7969955,
+      "flops": 3e+17,
+      "chinchilla_total": 4.489525404516437,
+      "chinchilla_nonembed": 4.595897475229008,
+      "local_width": null
+    },
+    "nano-3e+17-d512": {
+      "hidden": 512,
+      "layers": 6,
+      "params_total": 156508160,
+      "params_non_embed": 25174016,
+      "tokens": 431008800.57905513,
+      "flops": 3e+17,
+      "chinchilla_total": 4.466966619177016,
+      "chinchilla_nonembed": 4.455905469052336,
+      "local_width": 4.163575433863956
+    },
+    "nano-1e+18-d128": {
+      "hidden": 128,
+      "layers": 2,
+      "params_total": 33358976,
+      "params_non_embed": 525440,
+      "tokens": 8753795645.792015,
+      "flops": 1e+18,
+      "chinchilla_total": 5.1645172012200184,
+      "chinchilla_nonembed": 5.948562527793269,
+      "local_width": null
+    },
+    "nano-1e+18-d256": {
+      "hidden": 256,
+      "layers": 3,
+      "params_total": 68815360,
+      "params_non_embed": 3148288,
+      "tokens": 3942600779.1840773,
+      "flops": 1e+18,
+      "chinchilla_total": 4.393737521394583,
+      "chinchilla_nonembed": 4.67340873661736,
+      "local_width": null
+    },
+    "nano-1e+18-d384": {
+      "hidden": 384,
+      "layers": 4,
+      "params_total": 107942272,
+      "params_non_embed": 9441664,
+      "tokens": 2338364745.989985,
+      "flops": 1e+18,
+      "chinchilla_total": 4.130972143833777,
+      "chinchilla_nonembed": 4.248191224953621,
+      "local_width": null
+    },
+    "nano-1e+18-d512": {
+      "hidden": 512,
+      "layers": 6,
+      "params_total": 156508160,
+      "params_non_embed": 25174016,
+      "tokens": 1436696001.930184,
+      "flops": 1e+18,
+      "chinchilla_total": 4.0245858473096465,
+      "chinchilla_nonembed": 4.031774102804279,
+      "local_width": 3.8726501603900676
+    }
+  }
+}
